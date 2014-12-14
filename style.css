@@ -1,0 +1,147 @@
+
+html, html>body {
+	margin: 0px !important;
+	padding: 0px !important;
+	width: 100%;
+	height: 100%;
+}
+body {
+	font-family: "Helvetica Neue", Ubuntu, "WenQuanYi Micro Hei", Helvetica,"Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "SimHei", "ST Heiti", "WenQuanYi Zen Hei Sharp", Arial, sans-serif;
+	-webkit-font-smoothing:antialiased;
+	line-height: 1.8em;
+	background: #fff;
+	text-align: center;
+}
+a {
+	color: #479ded;
+	cursor: pointer;
+	text-decoration: none;
+	outline:none;
+	border:none;
+}
+a:hover {color: #4396cb;}
+/*p a:hover, .click:hover, span.doclink:hover {
+	color: #000;
+	background: #F0F2F3;
+	border-radius: 4px;
+	box-shadow: 0 0 0 3px rgba(231, 232, 235, .5);
+}*/
+.list, .list li {
+	list-style: none;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+.w100 {
+	width: 100%;
+}
+.left {float: left;}
+.right {float: right;}
+.fz12 {
+	font-size: 12px;
+}
+.warn {
+	box-shadow: inset 0 2px 10px rgba(255, 0, 4, 0.3);
+}
+.cup {
+	cursor: pointer;
+}
+#Main {
+	display: inline-block;
+	width: 640px;
+}
+#Main>* {
+	margin: 0.5em 0;
+}
+#Main>header {
+	border-bottom: 1px dotted #aaa;
+	line-height: 3em;
+	margin-bottom: 2em;
+}
+#Menu>li {
+	float: left;
+	margin-left: 0.5em;
+}
+#form, #Number {
+	display: table;
+}
+#form>li, #Number>li {
+	display: table-cell;
+}
+#form {
+	line-height: 2em;
+}
+.number {font-family: "digifaw", "Helvetica Neue", Ubuntu, "WenQuanYi Micro Hei", Helvetica,"Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "SimHei", "ST Heiti", "WenQuanYi Zen Hei Sharp", Arial, sans-serif;;}
+#form input {
+	font-family: "digifaw", sans-serif;
+	width: 90%;
+	height: 1.8em;
+	font-size: 1.8em;
+	border: 2px solid #aaa;
+	padding: 0 0.2em;
+	border-radius: 0.2em;
+	text-align: center;
+}
+#button {
+	padding: 10px;
+	font-size: 1.8em;
+	border-width: 0;
+	border-radius: 0.2em;
+	cursor: pointer;
+	background-color: #5AB0EE;
+	color: #fff;
+}
+#Number {
+	border-radius: 0.2em;
+	font-size: 4em;
+	padding: 0.3em 0;
+	height: 1em;
+	line-height: 1em;
+	background-color: #798883;
+	color: #fff;
+	margin-bottom: 1em;
+}
+#Result>li {
+	font-size: 2em;
+	line-height: 1.8em;
+	text-align: left;
+	border-bottom: 2px dotted #bbb;
+	color: #bbb;
+}
+#Result>li>span {
+	color: #000;
+}
+#Messages {
+	position: fixed;
+	top: 5px;
+	left: 0;
+	width: 100%;
+	line-height: 1.8em;
+	padding: 0.2em 0;
+	font-size: 1.8em;
+	background: #fdcd29 no-repeat 8px center;
+	color: #fff;
+	display: none;
+}
+#MessagesText {
+	display: inline-block;
+	text-align: left;
+	max-width: 96%;
+}
+@media(max-width:568px) {
+	#Main {
+		width: 96%;
+	}
+	#form input, #Result>li, #Messages {
+		font-size: 1em;
+	}
+	#form input {
+		border-width: 1px;
+	}
+	#Number {
+		font-size: 2em;
+	}
+	#Result>li {
+		border-bottom-width: 1px;
+	}
+}

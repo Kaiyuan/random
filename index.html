@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" /><!--禁止缩放-->
+	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--禁止转码-->
+	<meta name="theme-color" content="#5AB0EE">
+	<title>随机数生成器</title>
+	<link rel="stylesheet" type="text/css" href="fonts/digifaw.css" media="screen, print">
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen, print">
+	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<article id="Main">
+		<header class="w100 left">
+			<div class="left">随机数生成器</div>
+			<ul id="Menu" class="right fz12 list">
+				<li><span id="historybn" class="cup">历史记录</span></li>
+				<li><a href="https://github.com/Kaiyuan/random/issues" target="_blank">问题反馈</a></li>
+			</ul>
+		</header>
+		<ul id="form" class="list w100">
+			<li><label for="min">最小值</label><input id="min" type="number" name="min" value="1" min="1" maxlength="99999999" pattern="[0-9]{8}"></li>
+			<li><label for="max">最大值</label><input id="max" type="number" name="max" value="10" min="1" maxlength="99999999" pattern="[0-9]{8}"></li>
+			<li><label for="length">个数</label><input id="length" type="number" name="length" value="1" min="1" maxlength="100" pattern="[0-9]{3}"></li>
+		</ul>
+		<button id="button" class="click w100 cup">GO</button>
+		<ol id="Number" class="list w100 number">
+			<li id="NO8">0</li>
+			<li id="NO7">0</li>
+			<li id="NO6">0</li>
+			<li id="NO5">0</li>
+			<li id="NO4">0</li>
+			<li id="NO3">0</li>
+			<li id="NO2">0</li>
+			<li id="NO1">0</li>
+		</ol>
+		<ol id="Result" class="number"></ol>
+	</article>
+	<div id="Messages" class="w100 cup">
+		<div id="MessagesText"></div>
+	</div>
+	<audio src=""></audio>
+</body>
+</html>
