@@ -8,7 +8,7 @@
 	<title>随机数生成器</title>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="fonts/digifaw.css" media="screen, print">
-	<link rel="stylesheet" type="text/css" href="style.css" media="screen, print">
+	<link rel="stylesheet" type="text/css" href="style/style.css" media="screen, print">
 	<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
 	<script>
 		String.prototype.getQuery = function(name) {  
@@ -22,19 +22,21 @@
 		var getLength	=	parseInt(strHref.getQuery('length'));
 		var ifGo	=	strHref.getQuery('go');
 	</script>
-	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="script/script.js"></script>
 </head>
 <body>
-	<!--[if lte IE 9]><script src="killie.js"></script><![endif]-->
+	<!--[if lte IE 9]><script src="script/killie.js"></script><![endif]-->
 	<article id="Main">
 		<header class="w100 left">
 			<div id="logo" class="left"><h1 class="left"><i class="fa fa-paper-plane" title="不重复随机数生成器"></i></h1></div>
 			<!-- 菜单 -->
 			<ul id="Menu" class="right list">
-				<li><span id="test" class="cup">TEST</span></li>
-				<li><span id="historyBn" class="cup"><i class="fa fa-clock-o"></i> 记录</span></li>
+				<!-- <li><span id="test" class="cup">TEST</span></li> -->
+				<li><span id="historyBn" class="cup"><i class="fa fa-history"></i> 记录</span></li>
 				<li><span id="infoBn" class="cup"><i class="fa fa-info-circle"></i> 说明</span></li>
+				<li id="AudioBn" ><span class="cup" title="声音开关"><i class="fa fa-volume-up"></i></span></li>
 				<li><span id="donatShow" class="cup"  title="请作者喝咖啡"><i class="fa fa-coffee"></i></span></li>
+				<li id="QRBn" class="por cup"><span><i class="fa fa-qrcode"></i></span><img src="images/QRCode.svg" alt="" width="280" height="280" class="poa"></li>
 				<li><a href="https://github.com/Kaiyuan/random/issues" target="_blank" title="问题反馈"><i class="fa fa-life-ring"></i></a></li>
 			</ul>
 		</header>
@@ -58,7 +60,7 @@
 			<li id="NO1">0</li>
 		</ol>
 		<!-- 结果列表 -->
-		<ol id="Result" class="number"></ol>
+		<ol id="Result" class="number"><div id="resClear"></div></ol>
 	</article>
 	<!-- 提示信息 -->
 	<div id="Messages" class="w100 cup pof dpn">
@@ -111,6 +113,6 @@
 		<iframe src="//kaiyuan.github.io/donate/?item=Github_random&show=true" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:280px; width:100%; "  frameborder="0" scrolling="no"></iframe>
 	</div>
 	<!-- 音效 -->
-	<audio id="Audio" src="sound/sound.mp3" type="audio/mpeg" loop="loop"></audio>
+	<audio id="Audio" src="sound/sound.mp3" type="audio/mpeg"></audio>
 </body>
 </html>

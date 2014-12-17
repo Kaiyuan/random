@@ -22,7 +22,16 @@ jQuery(document).ready(function($) {
 	var chST = 100;
 	var showArr = new Array('0','0','0','0','0','0','0','0');
 	var showNum;
+	var AuVol = localStorage.randomVolume;
 
+
+	if (!AuVol) {
+		localStorage['randomVolume'] = AuVol = '1';
+	};
+	if (AuVol==='0') {
+		Audio.volume = 0;
+		$('#AudioBn>i').removeClass('fa-volume-up').addClass('fa-volume-off');
+	};
 	if (getMin) {
 		minInput.val(getMin);
 	};
@@ -36,7 +45,16 @@ jQuery(document).ready(function($) {
 		random(getMin,getMax,getLength);
 	};
 
-
+	$('#AudioBn').on('click','.fa-volume-up',function(event) {
+		localStorage['randomVolume'] = AuVol = '0';
+		Audio.volume = 0;
+		$('#AudioBn i').removeClass('fa-volume-up').addClass('fa-volume-off');
+	});	
+	$('#AudioBn').on('click','.fa-volume-off',function(event) {
+		localStorage['randomVolume'] = AuVol  = '1';
+		Audio.volume = 1;
+		$('#AudioBn i').removeClass('fa-volume-off').addClass('fa-volume-up');
+	});
 	mes.click(function(event) {
 		$(this).fadeOut('fast');
 	});
@@ -168,7 +186,7 @@ jQuery(document).ready(function($) {
 			Resukt.append('<li><span>'+thisNO+'</span></li>');
 			console.log('输出随机数 %d',thisNO);
 		} else {
-			mesBox('已经没有不重复的随机数了',true);
+			mesBox('没了不重复的随机数',true);
 		};
 	}
 
@@ -203,12 +221,15 @@ jQuery(document).ready(function($) {
 				showArr[7-i] = thisSrt.substr(numL-i-1,1);
 			};
 			numShow();
-		};
+		}
 	}
 
 	function numShow () {
 		if (chST>0) {
-			Audio.play();
+			if (Audio.paused&&AuVol==='1') {
+				Audio.currentTime = 0;
+				Audio.play();
+			};
 			var numA = Math.ceil(chST/10);
 			if (8 >= numA >0 ) {
 				numAni(numA);
@@ -219,7 +240,9 @@ jQuery(document).ready(function($) {
 			setTimeout(numShow,10);
 			chST = chST-1;
 		} else {
-			Audio.pause();
+			if (!Audio.paused) {
+				Audio.pause();
+			};
 			resAppend(showNum);
 			showArr = new Array('0','0','0','0','0','0','0','0');
 			chST = 100;

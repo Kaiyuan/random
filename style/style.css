@@ -125,6 +125,27 @@ p>code {
 	line-height: 3em;
 	margin-bottom: 2em;
 }
+#AudioBn>span {
+	width: 1.4em;
+	display: inline-block;
+	text-align: left;
+}
+#AudioBn i {
+	width: 100%;
+	padding: 0.5em 0;
+}
+#QRBn>img {
+	right: 0;
+	top: 2.4em;
+	background-color: #fff;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	overflow: hidden;
+	border-radius: 4px;
+	display: none;
+}
+#QRBn:hover>img {
+	display: block;
+}
 #logo h1, #logo h2 {
 	color: #5AB0EE;
 	margin: 0;
@@ -171,9 +192,11 @@ p>code {
 	padding: 0.3em 0;
 	height: 1em;
 	line-height: 1em;
-	background-color: #798883;
-	color: #fff;
+	background-color: #D5E0D9;
+	color: #5E5A58;
 	margin-bottom: 1em;
+	text-shadow: 2px 3px 2px rgba(0,0,0,0.2);
+	box-shadow: inset 2px 3px 5px rgba(0,0,0,0.1);
 }
 #Result>li {
 	font-size: 2em;
@@ -241,6 +264,9 @@ body>#Messages {
 	padding: 2em 3%;
 }
 @media(max-width:640px) {
+	#QRBn {
+		display: none;
+	}
 	#Main, .centerbox {
 		width: 96%;
 	}
@@ -249,12 +275,18 @@ body>#Messages {
 	#Messages {
 		font-size: 1.4em;
 	}
+	#Menu>li {
+		font-size: 1.2em;
+	}
 	#Result>li {
 		border-bottom-width: 1px;
 		font-size: 1.6em;
 	}
 }
 @media(max-width:480px) {
+	#logo h1, #logo h2 {
+		font-size: 1.4em;
+	}
 	#Messages {
 		font-size: 1em;
 	}
@@ -265,5 +297,9 @@ body>#Messages {
 	}
 	#Number {
 		font-size: 2em;
+	}
+	#Result>li {
+		border-bottom-width: 1px;
+		font-size: 1em;
 	}
 }
