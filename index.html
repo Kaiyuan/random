@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" /><!--禁止缩放-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0"  /><!--禁止缩放-->
 	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--禁止转码-->
 	<meta name="theme-color" content="#5AB0EE">
 	<title>随机数生成器</title>
@@ -26,41 +26,43 @@
 </head>
 <body>
 	<!--[if lte IE 9]><script src="script/killie.js"></script><![endif]-->
-	<article id="Main">
-		<header class="w100 left">
-			<div id="logo" class="left"><h1 class="left"><i class="fa fa-paper-plane" title="不重复随机数生成器"></i></h1></div>
-			<!-- 菜单 -->
-			<ul id="Menu" class="right list">
-				<!-- <li><span id="test" class="cup">TEST</span></li> -->
-				<li><span id="historyBn" class="cup"><i class="fa fa-history"></i> 记录</span></li>
-				<li><span id="infoBn" class="cup"><i class="fa fa-info-circle"></i> 说明</span></li>
-				<li id="AudioBn" ><span class="cup" title="声音开关"><i class="fa fa-volume-up"></i></span></li>
-				<li><span id="donatShow" class="cup"  title="请作者喝咖啡"><i class="fa fa-coffee"></i></span></li>
-				<li id="QRBn" class="por cup"><span><i class="fa fa-qrcode"></i></span><img src="images/QRCode.svg" alt="" width="280" height="280" class="poa"></li>
-				<li><a href="https://github.com/Kaiyuan/random/issues" target="_blank" title="问题反馈"><i class="fa fa-life-ring"></i></a></li>
-			</ul>
-		</header>
-		<!-- 输入框 -->
-		<ul id="form" class="list w100">
-			<li><label for="min">最小值</label><input id="min" type="number" name="min" value="1" min="1" maxlength="99999998" pattern="[0-9]{8}"></li>
-			<li><label for="max">最大值</label><input id="max" type="number" name="max" value="10" min="2" maxlength="99999999" pattern="[0-9]{8}"></li>
-			<li><label for="length">个数</label><input id="length" type="number" name="length" value="1" min="1" maxlength="100" pattern="[0-9]{3}"></li>
+	<header class="w100 left">
+		<!-- 菜单 -->
+		<ul id="Menu" class="list centerbox por">
+			<!-- <li id="logo"><i class="fa fa-paper-plane" title="不重复随机数生成器"></i></li> -->
+			<!-- <li><span id="test" class="cup">TEST</span></li> -->
+			<li id="historyBn"><span class="cup"><i class="fa fa-history"></i> 记录</span></li>
+			<li id="infoBn" ><span class="cup"><i class="fa fa-info-circle"></i> 说明</span></li>
+			<li id="AudioBn"><button class="cup w100 volume-off" title="声音开关"><i class="fa"></i></button></li>
+			<li id="donatShow"><span class="cup" title="请作者喝咖啡"><i class="fa fa-coffee"></i></span></li>
+			<li id="QRBn" class="por cup"><span><i class="fa fa-qrcode"></i></span><img src="images/QRCode.svg" alt="" width="280" height="280" class="poa tr3"></li>
+			<li id="Issue"><a href="https://github.com/Kaiyuan/random/issues" target="_blank" title="问题反馈"><i class="fa fa-life-ring"></i></a></li>
 		</ul>
-		<!-- 按钮 -->
-		<button id="button" class="click w100 cup">GO</button>
-		<!-- 数字滚动显示 -->
-		<ol id="Number" class="list w100 number">
-			<li id="NO8">0</li>
-			<li id="NO7">0</li>
-			<li id="NO6">0</li>
-			<li id="NO5">0</li>
-			<li id="NO4">0</li>
-			<li id="NO3">0</li>
-			<li id="NO2">0</li>
-			<li id="NO1">0</li>
-		</ol>
-		<!-- 结果列表 -->
-		<ol id="Result" class="number"><div id="resClear"></div></ol>
+	</header>
+	<article id="Main" class="left w100 center">
+		<div class="centerbox">
+			<!-- 输入框 -->
+			<ul id="form" class="list w100">
+				<li><label for="min">最小值</label><input id="min" type="number" name="min" value="1" min="1" maxlength="99999998" pattern="[0-9]{8}"></li>
+				<li><label for="max">最大值</label><input id="max" type="number" name="max" value="10" min="2" maxlength="99999999" pattern="[0-9]{8}"></li>
+				<li><label for="length">个数</label><input id="length" type="number" name="length" value="1" min="1" maxlength="100" pattern="[0-9]{3}"></li>
+			</ul>
+			<!-- 按钮 -->
+			<button id="button" class="click w100 cup">GO</button>
+			<!-- 数字滚动显示 -->
+			<ol id="Number" class="list w100 number">
+				<li id="NO8">0</li>
+				<li id="NO7">0</li>
+				<li id="NO6">0</li>
+				<li id="NO5">0</li>
+				<li id="NO4">0</li>
+				<li id="NO3">0</li>
+				<li id="NO2">0</li>
+				<li id="NO1">0</li>
+			</ol>
+			<!-- 结果列表 -->
+			<ol id="Result" class="number"><div id="resClear"></div></ol>
+		</div>
 	</article>
 	<!-- 提示信息 -->
 	<div id="Messages" class="w100 cup pof dpn">

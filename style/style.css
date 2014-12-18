@@ -32,7 +32,7 @@ a {
 	outline:none;
 	border:none;
 }
-a:hover, #Menu span:hover {color: #4396cb;}
+a:hover {color: #4396cb;}
 a, span, p>b, input, select, textarea, blockquote, .tr3 {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
@@ -108,54 +108,191 @@ p>code {
 .dpn {
 	display: none;
 }
-#Main {
-	display: inline-block;
-	width: 640px;
-}
 .centerbox {
 	display: inline-block;
 	text-align: left;
 	width: 640px;
 }
-#Main>* {
-	margin: 0.5em 0;
-}
-#Main>header {
-	border-bottom: 1px solid #ddd;
-	line-height: 3em;
+/* header */
+header {
+	/*border-bottom: 1px solid #ddd;*/
+	height: 40px;
+	line-height: 40px;
 	margin-bottom: 2em;
+	background-color: #eaeff4;
 }
-#AudioBn>span {
-	width: 1.4em;
-	display: inline-block;
-	text-align: left;
+#Menu::before, #Menu::after {
+	color: #aaa;
+	position: absolute;
+	content: "///";
+	font-size: 10px;
+	line-height: 1em;
 }
-#AudioBn i {
-	width: 100%;
-	padding: 0.5em 0;
+#Menu::before {
+	top: 5px;
+	left: -18px;
 }
-#QRBn>img {
-	right: 0;
-	top: 2.4em;
-	background-color: #fff;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-	overflow: hidden;
-	border-radius: 4px;
-	display: none;
+#Menu::after {
+	bottom: 5px;
+	right: -18px;
 }
-#QRBn:hover>img {
+#Menu a {
+	color: #fff;
 	display: block;
+}
+#Menu a:hover {
+	color: #fff;
+}
+#Menu span {
+	display: block;
+}
+#Menu>li {
+	text-align: center;
+	position: relative;
+	line-height: 40px;
+	height: 40px;
+	color: #fff;
+	background-color: #000;
+	margin: 0 5px;
+	width: 15%;
+	float: left;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+#Menu>li:first-child {
+	margin-left: 0;
+}
+#Menu>li:last-child {
+	margin-right: 0;
+}
+#Menu>li:hover {
+	-webkit-transform: translate(-2px, 8px);
+	-moz-transform: translate(-2px, 8px);
+	-o-transform: translate(-2px, 8px);
+	transform: translate(-2px, 8px);
+}
+#Menu>li::after, #Menu>li::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 0;
+	height: 0;
+	border: 1px solid #000;
+	border-width: 20px 5px;
+}
+#Menu>li::after {
+	right: -10px;
+	border-color: #000 transparent transparent #000;
+}
+#Menu>li::before {
+	left: -10px;
+	border-color: transparent #000 #000 transparent;
 }
 #logo h1, #logo h2 {
 	color: #5AB0EE;
 	margin: 0;
 }
-#Menu>li {
-	float: left;
-	margin-left: 1em;
-}
 #Main .fa {
 	font-size: 1.2em;
+}
+#Menu>#historyBn, #Menu>#infoBn {
+	width: 26%;
+}
+#Menu>#historyBn {
+	background-color: #a685e1 !important;
+}
+#historyBn::after {
+	border-color: #a685e1 transparent transparent #a685e1 !important;
+}
+#historyBn::before {
+	border-color: transparent #a685e1 #a685e1 transparent !important;
+}
+#infoBn {
+	background-color: #7eccfa !important;
+}
+#infoBn::after {
+	border-color: #7eccfa transparent transparent #7eccfa !important;
+}
+#infoBn::before {
+	border-color: transparent #7eccfa #7eccfa transparent !important;
+}
+#Menu>#AudioBn, #Menu>#donatShow, #Menu>#QRBn, #Menu>#Issue {
+	width: 10%;
+}
+#AudioBn {
+	background-color: #98de24 !important;
+}
+#AudioBn::after {
+	border-color: #98de24 transparent transparent #98de24 !important;
+}
+#AudioBn::before {
+	border-color: transparent #98de24 #98de24 transparent !important;
+}
+#AudioBn>button {
+	/*display: block;*/
+	background-color: #98de24;
+	border-width: 0;
+	color: #fff;
+	line-height: 40px;
+	height: 39px;
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+}
+#AudioBn .volume-up i::before {
+	content: "\f028";
+}
+#AudioBn .volume-off i::before {
+	content: "\f026";
+}
+#AudioBn i {
+	width: 1.2em;
+	text-align: left;
+	display: inline-block;
+}
+#donatShow {
+	background-color: #f7d234 !important;
+}
+#donatShow::after {
+	border-color: #f7d234 transparent transparent #f7d234 !important;
+}
+#donatShow::before {
+	border-color: transparent #f7d234 #f7d234 transparent !important;
+}
+#QRBn {
+	background-color: #FF6E60 !important;
+}
+#QRBn::after {
+	border-color: #FF6E60 transparent transparent #FF6E60 !important;
+}
+#QRBn::before {
+	border-color: transparent #FF6E60 #FF6E60 transparent !important;
+}
+#QRBn>img {
+	right: 0;
+	top: 40px;
+	background-color: #fff;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	overflow: hidden;
+	border-radius: 4px;
+	/*display: none;*/
+	z-index: -1;
+	opacity: 0;
+}
+#QRBn:hover>img {
+	display: block;
+	z-index: 10;
+	opacity: 1;
+}
+/* header end */
+.centerbox {
+	display: inline-block;
+	width: 640px;
+}
+#Main>.centerbox>* {
+	margin: 0.5em 0;
 }
 #form, #Number {
 	display: table;
@@ -166,7 +303,10 @@ p>code {
 #form {
 	line-height: 2em;
 }
-.number {font-family: "digifaw", "Helvetica Neue", Ubuntu, "WenQuanYi Micro Hei", Helvetica,"Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "SimHei", "ST Heiti", "WenQuanYi Zen Hei Sharp", Arial, sans-serif;;}
+.number {
+	font-family: "digifaw", "Helvetica Neue", Ubuntu, "WenQuanYi Micro Hei", Helvetica,"Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "SimHei", "ST Heiti", "WenQuanYi Zen Hei Sharp", Arial, sans-serif;
+	text-align: center;
+}
 #form input {
 	font-family: "digifaw", sans-serif;
 	width: 98%;
@@ -264,19 +404,44 @@ body>#Messages {
 	padding: 2em 3%;
 }
 @media(max-width:640px) {
-	#QRBn {
-		display: none;
+	header {
+		background-color: #000;
 	}
-	#Main, .centerbox {
+	#Menu::before, #Menu::after {
+		content: none;
+	}
+	#Menu>li {
+		margin: 0 4px;
+		font-size: 1.2em;
+	}
+	#Menu>li:last-child::after {
+		content: none;
+	}
+	#historyBn, #infoBn {
+		width: 26% !important;
+	}
+	#AudioBn, #donatShow, #Issue {
+		width: 13% !important;
+	}
+	#Menu>li:hover {
+		-webkit-transform: translate(0px, 0px);
+		-moz-transform: translate(0px, 0px);
+		-o-transform: translate(0px, 0px);
+		transform: translate(0px, 0px);
+	}
+	#QRBn {
+		display: none !important;
+	}
+	.centerbox {
 		width: 96%;
+	}
+	header>.centerbox {
+		width: 100%;
 	}
 }
 @media(max-width:568px) {
 	#Messages {
 		font-size: 1.4em;
-	}
-	#Menu>li {
-		font-size: 1.2em;
 	}
 	#Result>li {
 		border-bottom-width: 1px;
@@ -301,5 +466,13 @@ body>#Messages {
 	#Result>li {
 		border-bottom-width: 1px;
 		font-size: 1em;
+	}
+}
+@media(max-width: 320px){
+	#historyBn, #infoBn {
+		width: 25% !important;
+	}
+	#AudioBn, #donatShow, #Issue {
+		width: 13% !important;
 	}
 }

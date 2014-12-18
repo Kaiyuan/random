@@ -26,11 +26,12 @@ jQuery(document).ready(function($) {
 
 
 	if (!AuVol) {
-		localStorage['randomVolume'] = AuVol = '1';
-	};
-	if (AuVol==='0') {
 		Audio.volume = 0;
-		$('#AudioBn>i').removeClass('fa-volume-up').addClass('fa-volume-off');
+		localStorage['randomVolume'] = AuVol = '0';
+	};
+	if (AuVol==='1') {
+		Audio.volume = 1;
+		$('#AudioBn>i').removeClass('fa-volume-off').addClass('fa-volume-up');
 	};
 	if (getMin) {
 		minInput.val(getMin);
@@ -45,15 +46,15 @@ jQuery(document).ready(function($) {
 		random(getMin,getMax,getLength);
 	};
 
-	$('#AudioBn').on('click','.fa-volume-up',function(event) {
+	$('#AudioBn').on('click','.volume-up',function(event) {
 		localStorage['randomVolume'] = AuVol = '0';
 		Audio.volume = 0;
-		$('#AudioBn i').removeClass('fa-volume-up').addClass('fa-volume-off');
+		$('#AudioBn button').removeClass('volume-up').addClass('volume-off');
 	});	
-	$('#AudioBn').on('click','.fa-volume-off',function(event) {
+	$('#AudioBn').on('click','.volume-off',function(event) {
 		localStorage['randomVolume'] = AuVol  = '1';
 		Audio.volume = 1;
-		$('#AudioBn i').removeClass('fa-volume-off').addClass('fa-volume-up');
+		$('#AudioBn button').removeClass('volume-off').addClass('volume-up');
 	});
 	mes.click(function(event) {
 		$(this).fadeOut('fast');
