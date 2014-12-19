@@ -35,14 +35,14 @@
 			<li id="infoBn" ><span class="cup"><i class="fa fa-info-circle"></i> 说明</span></li>
 			<li id="AudioBn"><button class="cup w100 volume-off" title="声音开关"><i class="fa"></i></button></li>
 			<li id="donatShow"><span class="cup" title="请作者喝咖啡"><i class="fa fa-coffee"></i></span></li>
-			<li id="QRBn" class="por cup"><span><i class="fa fa-qrcode"></i></span><img src="images/QRCode.svg" alt="" width="280" height="280" class="poa tr3"></li>
+			<li id="QRBn" class="por cup"><span><i class="fa fa-qrcode"></i></span><img src="images/ecgame.svg" alt="" width="280" height="280" class="poa tr3"></li>
 			<li id="Issue"><a href="https://github.com/Kaiyuan/random/issues" target="_blank" title="问题反馈"><i class="fa fa-life-ring"></i></a></li>
 		</ul>
 	</header>
 	<article id="Main" class="left w100 center">
 		<div class="centerbox">
 			<!-- 输入框 -->
-			<ul id="form" class="list w100">
+			<ul id="form" class="list w100 center">
 				<li><label for="min">最小值</label><input id="min" type="number" name="min" value="1" min="1" maxlength="99999998" pattern="[0-9]{8}"></li>
 				<li><label for="max">最大值</label><input id="max" type="number" name="max" value="10" min="2" maxlength="99999999" pattern="[0-9]{8}"></li>
 				<li><label for="length">个数</label><input id="length" type="number" name="length" value="1" min="1" maxlength="100" pattern="[0-9]{3}"></li>
@@ -69,32 +69,40 @@
 		<div id="MessagesText"></div>
 	</div>
 	<!-- 记录 -->
-	<div id="HistoryBox" class="w100 pof dpn">
-		<i id="HistoryClose" class="cup fa fa-remove pof tr3"></i>
+	<div id="HistoryBox" class="w100 pof dpn popup">
+		<div class="w100 center pof">
+			<div class="centerbox">
+				<h3><i class="fa fa-history"></i> 记录</h3>
+			</div>
+			<i id="HistoryClose" class="cup fa fa-remove poa"></i>
+		</div>
 		<div class="centerbox">
-			<h3>记录</h3>
-			<ul id="HistoryList"></ul>
+			<ul id="HistoryList" class="list"></ul>
 		</div>
 	</div>
 	<!-- 说明 -->
-	<div id="InfoBox" class="w100 pof dpn">
-		<i id="InfoClose" class="cup fa fa-remove pof tr3"></i>
+	<div id="InfoBox" class="w100 pof dpn popup">
+		<div class="w100 center pof">
+			<div class="centerbox">
+				<h3><i class="fa fa-info-circle"></i> 说明</h3>
+			</div>
+			<i id="InfoClose" class="cup fa fa-remove poa tr3"></i>
+		</div>
 		<div class="centerbox">
-			<h3>说明</h3>
 			<p>
 				在对应输入框中填写相应数字后点击「GO」按钮即可生成不重复随机数。<br>
 				最小值和个数必须小于最大值！
 			</p>
 			<p>
-				点击了第一次「GO」之后，只要不修改最小值和最大值，这次生成的随机数顺序不会改变，所以多次点击「GO」都不会出现重复的数字，直到生成所有数字。
+				点击了第一次「GO」之后，只要不修改最小值和最大值，这次生成的随机数顺序不会改变，所以多次点击「GO」都不会出现重复的数字，直到生成所有数字。数字会被随机50次保证是真的随机。
 			</p>
 			<p>
-				每次点击点击按钮生成随机数都会添加到记录中，可通过顶部「<i class="fa fa-clock-o"></i> 记录」查看。这段记录是保存在你的浏览器中的，只要浏览器数据没有清理就不会丢失。
+				每次点击点击按钮生成随机数都会添加到记录中，可通过顶部「<i class="fa fa-history"></i> 记录」查看。这段记录是保存在你的浏览器中的，只要浏览器数据没有清理就不会丢失。
 			</p>
 			<p>
 				可以直接使用 GET 方式输入数据。
 				</p>
-			<pre><code>http:&#47;&#47;kaiyuan.github.io&#47;random&#47;<span style="color: #de2867;">?</span>min=1<span style="color: #7262c7;">&amp;</span>max=10<span style="color: #7262c7;">&amp;</span>length=2<span style="color: #7262c7;">&amp;</span>go=true</code></pre>
+			<pre><code>http:&#47;&#47;roll.ecga.me&#47;<span style="color: #de2867;">?</span>min=1<span style="color: #7262c7;">&amp;</span>max=10<span style="color: #7262c7;">&amp;</span>length=2<span style="color: #7262c7;">&amp;</span>go=true</code></pre>
 			<p>
 				<code>min=1</code> 是最小值<br>
 				<code>max=10</code> 是最大值<br>
@@ -110,9 +118,16 @@
 		</div>
 	</div>
 	<!-- 咖啡窗口 -->
-	<div id="DonateBox" class="pof dpn">
-		<i id="donatebn" class="cup fa fa-remove pof tr3"></i>
+	<div id="DonateBox" class="pof dpn popup">
+		<div class="w100 center pof">
+			<div class="centerbox">
+				<h3><i class="fa fa-coffee"></i> 即溶咖啡</h3>
+			</div>
+			<i id="donatebn" class="cup fa fa-remove poa tr3"></i>
+		</div>
+		<div class="centerbox">
 		<iframe src="//kaiyuan.github.io/donate/?item=Github_random&show=true" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:280px; width:100%; "  frameborder="0" scrolling="no"></iframe>
+		</div>
 	</div>
 	<!-- 音效 -->
 	<audio id="Audio" src="sound/sound.mp3" type="audio/mpeg"></audio>

@@ -108,6 +108,9 @@ p>code {
 .dpn {
 	display: none;
 }
+.center {
+	text-align: center;
+}
 .centerbox {
 	display: inline-block;
 	text-align: left;
@@ -292,7 +295,7 @@ header {
 	width: 640px;
 }
 #Main>.centerbox>* {
-	margin: 0.5em 0;
+	margin: 20px 0;
 }
 #form, #Number {
 	display: table;
@@ -348,9 +351,8 @@ header {
 #Result>li>span {
 	color: #000;
 }
-body>.dpn {
-	padding: 1em 0;
-	box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+
+.popup {
 	top: 0;
 	left: 0;
 	background-color: #fff;
@@ -358,30 +360,52 @@ body>.dpn {
 	overflow: hidden;
 	overflow-y: auto;
 }
-body>.dpn>* {
+.popup>* {
 	max-width: 100%;
 }
-/*body>.dpn>.centerbox {
-	height: 100%;
+.popup>.centerbox {
+	margin: 80px 0;
+	/*height: 100%;*/
 	overflow: hidden;
 	overflow-y: auto;
-}*/
-body>.dpn>.pof {
+}
+.popup>.pof {
+	top: 0;
+	left: 0;
+	height: 60px;
+	line-height: 60px;
+	background-color: #000;
+	color: #fff;
+}
+.popup>.pof h3 {
+	margin: 0;
+	line-height: 60px;
+}
+.popup>.pof .poa {
 	width: 32px;
 	height: 32px;
 	line-height: 32px;
 	font-size: 24px;
 	border-radius: 16px;
 	background-color: rgba(255,255,255,0.9);
-	right: 20px;
-	top: 10px;
+	right: 14px;
+	top: 14px;
 	color: #999;
 }
-body>.dpn>.pof:hover {
+.popup .poa:hover {
 	color: #000;
 }
+#HistoryBox>.pof {
+	background-color: #a685e1;
+}
+#InfoBox>.pof {
+	background-color: #7eccfa;
+}
+#DonateBox>.pof {
+	background-color: #F7D234;
+}
 body>#Messages {
-	top: 1em;
+	top: 40px;
 	left: 0;
 	width: 100%;
 	height: auto;

@@ -142,8 +142,8 @@ jQuery(document).ready(function($) {
 			console.log('生成数组');
 
 			/* 打散数组 http://www.ifrans.cn/javascript-array-random-sort/ */
-			theRes.sort(randomSort);
-			console.log('打散数组');
+			theRes.sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort).sort(randomSort);
+			console.log('打散数组 50 次');
 
 			chMin = minNO;
 			chMax = maxNO;
@@ -187,7 +187,7 @@ jQuery(document).ready(function($) {
 			Resukt.append('<li><span>'+thisNO+'</span></li>');
 			console.log('输出随机数 %d',thisNO);
 		} else {
-			mesBox('没了不重复的随机数',true);
+			mesBox('不重复的随机数没了',true);
 		};
 	}
 
