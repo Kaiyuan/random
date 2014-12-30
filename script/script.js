@@ -304,29 +304,56 @@ jQuery(document).ready(function($) {
 		    },
 		    function(c) { 
 		    	numSs(4)
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
+		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
 		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
 		    	numSs(3)
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
+		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
+		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
 		    	document.getElementById(numbox[4]).innerHTML = showNumAttay[3];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
 		    	numSs(2)
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
+		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
+		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
+		    	document.getElementById(numbox[4]).innerHTML = showNumAttay[3];
 		    	document.getElementById(numbox[3]).innerHTML = showNumAttay[4];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
 		    	numSs(1)
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
+		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
+		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
+		    	document.getElementById(numbox[4]).innerHTML = showNumAttay[3];
+		    	document.getElementById(numbox[3]).innerHTML = showNumAttay[4];
 		    	document.getElementById(numbox[2]).innerHTML = showNumAttay[5];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
+		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
+		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
+		    	document.getElementById(numbox[4]).innerHTML = showNumAttay[3];
+		    	document.getElementById(numbox[3]).innerHTML = showNumAttay[4];
+		    	document.getElementById(numbox[2]).innerHTML = showNumAttay[5];
 		    	document.getElementById(numbox[1]).innerHTML = showNumAttay[6];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
+		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
+		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
+		    	document.getElementById(numbox[4]).innerHTML = showNumAttay[3];
+		    	document.getElementById(numbox[3]).innerHTML = showNumAttay[4];
+		    	document.getElementById(numbox[2]).innerHTML = showNumAttay[5];
+		    	document.getElementById(numbox[1]).innerHTML = showNumAttay[6];
 		    	document.getElementById(numbox[0]).innerHTML = showNumAttay[7];
 		        setTimeout(c, 100)
 		    },
