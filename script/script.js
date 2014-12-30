@@ -298,6 +298,7 @@ jQuery(document).ready(function($) {
 		    },
 		    function(c) { 
 		    	numSs(5)
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
 		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
 		        setTimeout(c, 100)
 		    },
