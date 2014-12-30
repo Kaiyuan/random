@@ -341,6 +341,10 @@ header {
 	text-shadow: 2px 3px 2px rgba(0,0,0,0.2);
 	box-shadow: inset 2px 3px 5px rgba(0,0,0,0.1);
 }
+#Number>li {
+	width: 12.5%;
+	overflow: hidden;
+}
 #Result>li {
 	font-size: 2em;
 	line-height: 1.8em;
@@ -359,6 +363,10 @@ header {
 	height: 100%;
 	overflow: hidden;
 	overflow-y: auto;
+}
+.popup a {
+	border-bottom: 1px dotted #4396cb;
+	color: #4396cb;
 }
 .popup>* {
 	max-width: 100%;
@@ -395,6 +403,24 @@ header {
 .popup .poa:hover {
 	color: #000;
 }
+#HistoryList>li {
+	float: left;
+	width: 100%;
+	padding-bottom: 2em;
+	margin: 1em 0;
+	border-bottom: 1px dotted #ddd;
+}
+#HistoryList>li>div {
+	width: 100%;
+	float: left;
+}
+#HistoryList>li>div:first-child {
+	font-size: 12px;
+}
+#HistoryList>li>.number {
+	text-align: left;
+	font-size: 1.8em;
+}
 #HistoryBox>.pof {
 	background-color: #a685e1;
 }
@@ -427,6 +453,14 @@ body>#Messages {
 	width: 94%;
 	padding: 2em 3%;
 }
+@media(max-width:1024px) {
+	#Menu>li:hover {
+		-webkit-transform: translate(0px, 0px);
+		-moz-transform: translate(0px, 0px);
+		-o-transform: translate(0px, 0px);
+		transform: translate(0px, 0px);
+	}
+}
 @media(max-width:640px) {
 	header {
 		background-color: #000;
@@ -447,17 +481,11 @@ body>#Messages {
 	#AudioBn, #donatShow, #Issue {
 		width: 13% !important;
 	}
-	#Menu>li:hover {
-		-webkit-transform: translate(0px, 0px);
-		-moz-transform: translate(0px, 0px);
-		-o-transform: translate(0px, 0px);
-		transform: translate(0px, 0px);
-	}
 	#QRBn {
 		display: none !important;
 	}
 	.centerbox {
-		width: 96%;
+		width: 90%;
 	}
 	header>.centerbox {
 		width: 100%;

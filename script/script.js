@@ -17,21 +17,18 @@ jQuery(document).ready(function($) {
 	var donatBn = $('#donatebn');
 	var donatShow = $('#donatShow');
 	var theRes = new Array;
-	var chMin = chMax = chNO = numS = 0;
+	var chMin = chMax = chNO = echoNumLength = 0;
 	var Audio = document.getElementById('Audio');
-	var chST = 100;
-	var showArr = new Array('0','0','0','0','0','0','0','0');
-	var showNum;
 	var AuVol = localStorage.randomVolume;
 
 
 	if (!AuVol) {
 		Audio.volume = 0;
-		localStorage['randomVolume'] = AuVol = '0';
+		localStorage.randomVolume = AuVol = 'off';
 	};
-	if (AuVol==='1') {
+	if (AuVol==='up') {
 		Audio.volume = 1;
-		$('#AudioBn>i').removeClass('fa-volume-off').addClass('fa-volume-up');
+		$('#AudioBn button').removeClass('volume-off').addClass('volume-up');
 	};
 	if (getMin) {
 		minInput.val(getMin);
@@ -46,13 +43,21 @@ jQuery(document).ready(function($) {
 		random(getMin,getMax,getLength);
 	};
 
-	$('#AudioBn').on('click','.volume-up',function(event) {
-		localStorage['randomVolume'] = AuVol = '0';
+	var jsqueue = function(funcs, scope) {
+	    (function next() {
+	          if(funcs.length > 0) {
+	              funcs.shift().apply(scope || {}, [next].concat(Array.prototype.slice.call(arguments, 0)));
+	          }
+	    })();
+	};
+
+	$(document).on('click','.volume-up',function(event) {
+		localStorage.randomVolume = AuVol = 'off';
 		Audio.volume = 0;
 		$('#AudioBn button').removeClass('volume-up').addClass('volume-off');
 	});	
-	$('#AudioBn').on('click','.volume-off',function(event) {
-		localStorage['randomVolume'] = AuVol  = '1';
+	$(document).on('click','.volume-off',function(event) {
+		localStorage.randomVolume = AuVol  = 'up';
 		Audio.volume = 1;
 		$('#AudioBn button').removeClass('volume-off').addClass('volume-up');
 	});
@@ -89,11 +94,11 @@ jQuery(document).ready(function($) {
 		$(this).select();
 	});
 
-	$('.pressed').click(function(event) {
+	$(document).on('click','.pressed',function(event) {
 		/* 结果输出进行时 */
 		mesBox('正在生成数字');
 	});
-	$('.click').click(function(event) {
+	$(document).on('click','.click',function(event) {
 		mes.fadeOut('fast');
 		/* 点击 GO 执行 */
 		$('#form input').removeClass('warn');
@@ -149,31 +154,21 @@ jQuery(document).ready(function($) {
 			chMax = maxNO;
 			chNO = 0;
 		};
+		
+		
 
-		// 输出随机数
-		if (lengthNO>1&&maxNO>lengthNO) {
-			for (var i = lengthNO - 1; i >= 0; i--) {
-				var thisNO = theRes[chNO];
-				if (thisNO!=null&&thisNO!='undefined') {
-					numVar(thisNO);
-					console.log('输出第 %d 个数 %d',chNO+1,thisNO);
-					chNO = chNO+1;
-					console.log('chNO %d',chNO);
-				} else {
-					resAppend();
-					break;	// 终止循环
-				};
+		if (chNO<theRes.length) {
+			if (lengthNO>1) {
+				// 输出随机数数量
+				echoNumLength = lengthNO;
 			};
-		} else {
-			if (chNO<theRes.length) {
-				var theNo = theRes[chNO];
-				numVar(theNo);
-				chNO = chNO+1;
-			} else {
-				resAppend();
-			};
+
+			// 输出随机数
+			showNum();
+		} else{
+			resAppend();
 		};
-		$('#button').removeClass('pressed').addClass('click');
+		
 	}
 
 	// 随机顺序
@@ -203,54 +198,167 @@ jQuery(document).ready(function($) {
 		
 	}
 
-	function numAni (theLength) {
-		if (!theLength) {
-			theLength = 8;
-		};
-		for (var i = theLength - 1; i >= 0; i--) {
-			document.getElementById(numbox[i]).innerHTML	=	Math.ceil(Math.random()*9);
-		};
-	}
-
 	function numVar (thisNum) {
+		// 把数字转为字符串数组
 		if (thisNum) {
-			showNum = thisNum;
-			thisSrt = thisNum.toString();	// 把数字转为字符串
+			var retArr = new Array('0','0','0','0','0','0','0','0');
+			var thisSrt = thisNum.toString();	// 把数字转为字符串
 			var numL = thisSrt.length;	//数字位数
 			for (var i = numL - 1; i >= 0; i--) {
 				// 数组长度－1再减去 i 得到数字位置
-				showArr[7-i] = thisSrt.substr(numL-i-1,1);
+				retArr[7-i] = thisSrt.substr(numL-i-1,1);
 			};
-			numShow();
 		}
+		return(retArr);
 	}
 
-	function numShow () {
-		if (chST>0) {
-			if (Audio.paused&&AuVol==='1') {
-				Audio.currentTime = 0;
-				Audio.play();
-			};
-			var numA = Math.ceil(chST/10);
-			if (8 >= numA >0 ) {
-				numAni(numA);
-				document.getElementById(numbox[numA-1]).innerHTML = showArr[8-numA];
-			} else {
-				numAni(8);
-			};
-			setTimeout(numShow,10);
-			chST = chST-1;
-		} else {
-			if (!Audio.paused) {
-				Audio.pause();
-			};
-			resAppend(showNum);
-			showArr = new Array('0','0','0','0','0','0','0','0');
-			chST = 100;
-		};
-	}
+
 	$('#test').click(function(event) {
 		numVar(567);
 	});
-	// setInterval(numAni,10);
+
+	function echoEnd (argument) {
+		console.log('输出随机数结束');
+		$('#button').removeClass('pressed').addClass('click');
+	}
+
+
+	// 随机数动画1
+	function nunS (freq) {
+		if (freq>1) {
+			for (var i = freq-1; i >= 0; i--) {
+				document.getElementById(numbox[i]).innerHTML = Math.ceil(Math.random()*9);
+			};
+		};
+	}
+	// 随机数动画2
+	function numSs (freq) {
+		//  异步显示数字动画
+		jsqueue([
+		    function(c) { 
+		    	nunS(freq)
+		        setTimeout(c, 10)
+		    },
+		    function(c) { 
+		    	nunS(freq)
+		        setTimeout(c, 10)
+		    },
+		    function(c) { 
+		    	nunS(freq)
+		        setTimeout(c, 10)
+		    },
+		    function(c) { 
+		    	nunS(freq)
+		        setTimeout(c, 10)
+		    },
+		    function(c) { 
+		    	nunS(freq)
+		        setTimeout(c, 10)
+		    },
+		    function(c) { 
+		    	nunS(freq)
+		        setTimeout(c, 10)
+		    },
+		    function(c) { 
+		    	nunS(freq)
+		        setTimeout(c, 10)
+		    },
+		    function(c) { 
+		    	nunS(freq)
+		        setTimeout(c, 10)
+		    },
+		    function() {
+		    	nunS(freq)
+		    }
+		], this);
+	}
+	// 输出随机数字
+	function showNum (thisNum) {
+		var showNumAttay = numVar(theRes[chNO]);
+		$('#button').removeClass('click').addClass('pressed');
+		jsqueue([
+		    function(c) { 
+		    	// 如果开启声音就播放声音
+				if (Audio.paused&&AuVol==='up') {
+					Audio.currentTime = 0;
+					Audio.play();
+					console.log('播放声音');
+				};
+		    	numSs(8)
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	numSs(8)
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	numSs(7)
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	numSs(6)
+		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	numSs(5)
+		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	numSs(4)
+		    	document.getElementById(numbox[4]).innerHTML = showNumAttay[3];
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	numSs(3)
+		    	document.getElementById(numbox[3]).innerHTML = showNumAttay[4];
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	numSs(2)
+		    	document.getElementById(numbox[2]).innerHTML = showNumAttay[5];
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	numSs(1)
+		    	document.getElementById(numbox[1]).innerHTML = showNumAttay[6];
+		        setTimeout(c, 100)
+		    },
+		    function(c) { 
+		    	document.getElementById(numbox[0]).innerHTML = showNumAttay[7];
+		        setTimeout(c, 100)
+		    },
+		    function() {
+		    	if (!Audio.paused) {
+					Audio.pause();
+					console.log('停止声音');
+				};
+				resAppend(theRes[chNO]);
+				chNO = chNO+1;
+				echoNumLength = echoNumLength-1;
+				if (chNO<theRes.length) {
+					if (echoNumLength>0) {
+						setTimeout(showNum, 600);
+					} else {
+						echoEnd();
+					};
+				} else{
+					mesBox('不重复随机数没有了',true);
+					echoEnd();
+				};
+				
+		    }
+		], this);
+	}
+
+	// 按随机数个数输出
+	function numFun (argument) {
+		if (echoNumLength>0) {
+			showNum();
+		};
+	}
+
+
 });

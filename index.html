@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0"  /><!--禁止缩放-->
 	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--禁止转码-->
 	<meta name="theme-color" content="#5AB0EE">
-	<title>随机数生成器</title>
+	<title>简易 Roll 工具</title>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="fonts/digifaw.css" media="screen, print">
 	<link rel="stylesheet" type="text/css" href="style/style.css" media="screen, print">
@@ -74,10 +74,29 @@
 			<div class="centerbox">
 				<h3><i class="fa fa-history"></i> 记录</h3>
 			</div>
-			<i id="HistoryClose" class="cup fa fa-remove poa"></i>
+			<i id="HistoryClose" class="cup fa fa-remove poa tr3"></i>
 		</div>
 		<div class="centerbox">
-			<ul id="HistoryList" class="list"></ul>
+			<ul id="HistoryList" class="list">
+				<li>
+					<div>
+						Min: 1, Max: 10
+						<div class="right">2014-12-20 1:26</div>
+					</div>
+					<div class="number">
+						6
+					</div>
+				</li>
+				<li>
+					<div>
+						Min: 1, Max: 10
+						<div class="right">2014-12-20 1:26</div>
+					</div>
+					<div class="number">
+						6, 2, 8, 1
+					</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<!-- 说明 -->
@@ -90,14 +109,14 @@
 		</div>
 		<div class="centerbox">
 			<p>
-				在对应输入框中填写相应数字后点击「GO」按钮即可生成不重复随机数。<br>
+				在对应输入框中填写相应数字后点击<span style="color:#fff;margin: 0 0.3em;background-color: #5AB0EE; box-shadow: 0 0 0 3px #5AB0EE; border-radius: 1px; padding: 0 0.2em;">GO</span>按钮即可生成不重复随机数。<br>
 				最小值和个数必须小于最大值！
 			</p>
 			<p>
-				点击了第一次「GO」之后，只要不修改最小值和最大值，这次生成的随机数顺序不会改变，所以多次点击「GO」都不会出现重复的数字，直到生成所有数字。数字会被随机50次保证是真的随机。
+				点击了第一次<span style="color:#fff;margin: 0 0.3em;background-color: #5AB0EE; box-shadow: 0 0 0 3px #5AB0EE; border-radius: 1px; padding: 0 0.2em;">GO</span>之后，只要不修改最小值和最大值，这次生成的随机数顺序不会改变，所以多次点击<span style="color:#fff;margin: 0 0.3em;background-color: #5AB0EE; box-shadow: 0 0 0 3px #5AB0EE; border-radius: 1px; padding: 0 0.2em;">GO</span>都不会出现重复的数字，直到生成所有数字。数字会被随机50次保证是真的随机。
 			</p>
 			<p>
-				每次点击点击按钮生成随机数都会添加到记录中，可通过顶部「<i class="fa fa-history"></i> 记录」查看。这段记录是保存在你的浏览器中的，只要浏览器数据没有清理就不会丢失。
+				每次点击点击按钮生成随机数都会添加到记录中，可通过顶部「<span style="color:#fff;margin: 0 0.3em;background-color: #A685E1; box-shadow: 0 0 0 3px #A685E1; border-radius: 1px; padding: 0 0.2em;"><i class="fa fa-history"></i> 记录</span>」查看。这段记录是保存在你的浏览器中的，只要浏览器数据没有清理就不会丢失。
 			</p>
 			<p>
 				可以直接使用 GET 方式输入数据。
@@ -110,10 +129,20 @@
 				<code>go=true</code> 是设置是否立即生成随机数
 			</p>
 			<p>
-				随机数生成原理：<a href="http://www.ifrans.cn/javascript-array-random-sort/" target="_blank">http://www.ifrans.cn/javascript-array-random-sort/</a>
+				随机数生成原理：<a href="http://www.ifrans.cn/javascript-array-random-sort/" target="_blank">http://www.ifrans.cn/javascript-array-random-sort/</a><br>
+				JavaScript 排队（异步）：<a href="http://segmentfault.com/q/1010000002435672/" target="_blank">http://segmentfault.com/q/1010000002435672</a><br>
+				Github：<a href="https://github.com/Kaiyuan/random/" target="_blank">https://github.com/Kaiyuan/random/</a><br>
+				整个工具思路和代码解释（未完成）：<a href="https://github.com/Kaiyuan/random/wiki" target="_blank">https://github.com/Kaiyuan/random/wiki</a>
 			</p>
+			<h4 style="margin: 1em 0 0 0;">使用到的项目</h4>
+			<ul>
+				<li><a href="https://jquery.com" target="_blank">jQuery</a></li>
+				<li>图标：<a href="http://fontawesome.io/" target="_blank">Font Awesome</a></li>
+				<li>二维码生成：<a href="http://cli.im/" target="_blank">草料</a></li>
+				<li>计算器字体：<a href="https://github.com/Kaiyuan/random/tree/gh-pages/fonts" target="_blank">digifaw</a></li>
+			</ul>
 			<p>
-				本页面代码：<a href="https://github.com/Kaiyuan/random/" target="_blank">https://github.com/Kaiyuan/random/</a>
+				LICENSE: <a href="https://github.com/Kaiyuan/random/blob/gh-pages/LICENSE" target="_blank">MIT</a>
 			</p>
 		</div>
 	</div>
