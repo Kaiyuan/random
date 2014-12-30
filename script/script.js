@@ -179,8 +179,11 @@ jQuery(document).ready(function($) {
 	// 显示数字
 	function resAppend (thisNO) {
 		if (thisNO!=null&&thisNO!='undefined') {
-			Resukt.append('<li><span>'+thisNO+'</span></li>');
+			Resukt.append('<li class="hide"><span>'+thisNO+'</span></li>');
 			console.log('输出随机数 %d',thisNO);
+			$('#Result>li:last-child').slideDown('fast', function() {
+				$(this).removeClass('hide');
+			});
 		} else {
 			mesBox('不重复的随机数没了',true);
 		};
@@ -263,17 +266,13 @@ jQuery(document).ready(function($) {
 		    	nunS(freq)
 		        setTimeout(c, 10)
 		    },
-		    function(c) { 
-		    	nunS(freq)
-		        setTimeout(c, 10)
-		    },
 		    function() {
 		    	nunS(freq)
 		    }
 		], this);
 	}
 	// 输出随机数字
-	function showNum (thisNum) {
+	function showNum () {
 		var showNumAttay = numVar(theRes[chNO]);
 		$('#button').removeClass('click').addClass('pressed');
 		jsqueue([
@@ -358,6 +357,15 @@ jQuery(document).ready(function($) {
 		        setTimeout(c, 100)
 		    },
 		    function() {
+		    	// 之所以要些一堆，是避免低配置设备修改对应数字失败
+		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
+		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
+		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
+		    	document.getElementById(numbox[4]).innerHTML = showNumAttay[3];
+		    	document.getElementById(numbox[3]).innerHTML = showNumAttay[4];
+		    	document.getElementById(numbox[2]).innerHTML = showNumAttay[5];
+		    	document.getElementById(numbox[1]).innerHTML = showNumAttay[6];
+		    	document.getElementById(numbox[0]).innerHTML = showNumAttay[7];
 		    	if (!Audio.paused) {
 					Audio.pause();
 					console.log('停止声音');
@@ -381,6 +389,11 @@ jQuery(document).ready(function($) {
 				
 		    }
 		], this);
+	}
+
+	// 保存记录
+	function saveNum (thisNum) {
+		// body...
 	}
 
 
