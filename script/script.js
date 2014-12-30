@@ -20,7 +20,14 @@ jQuery(document).ready(function($) {
 	var chMin = chMax = chNO = echoNumLength = 0;
 	var Audio = document.getElementById('Audio');
 	var AuVol = localStorage.randomVolume;
-
+	// 异步函数
+	var jsqueue = function(funcs, scope) {
+	    (function next() {
+	          if(funcs.length > 0) {
+	              funcs.shift().apply(scope || {}, [next].concat(Array.prototype.slice.call(arguments, 0)));
+	          }
+	    })();
+	};
 
 	if (!AuVol) {
 		Audio.volume = 0;
@@ -43,13 +50,6 @@ jQuery(document).ready(function($) {
 		random(getMin,getMax,getLength);
 	};
 
-	var jsqueue = function(funcs, scope) {
-	    (function next() {
-	          if(funcs.length > 0) {
-	              funcs.shift().apply(scope || {}, [next].concat(Array.prototype.slice.call(arguments, 0)));
-	          }
-	    })();
-	};
 
 	$(document).on('click','.volume-up',function(event) {
 		localStorage.randomVolume = AuVol = 'off';
@@ -292,37 +292,36 @@ jQuery(document).ready(function($) {
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
-		    	numSs(7)
+		    	numSs(6)
 		    	document.getElementById(numbox[7]).innerHTML = showNumAttay[0];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
-		    	numSs(6)
+		    	numSs(5)
 		    	document.getElementById(numbox[6]).innerHTML = showNumAttay[1];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
-		    	numSs(5)
+		    	numSs(4)
 		    	document.getElementById(numbox[5]).innerHTML = showNumAttay[2];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
-		    	numSs(4)
+		    	numSs(3)
 		    	document.getElementById(numbox[4]).innerHTML = showNumAttay[3];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
-		    	numSs(3)
+		    	numSs(2)
 		    	document.getElementById(numbox[3]).innerHTML = showNumAttay[4];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
-		    	numSs(2)
+		    	numSs(1)
 		    	document.getElementById(numbox[2]).innerHTML = showNumAttay[5];
 		        setTimeout(c, 100)
 		    },
 		    function(c) { 
-		    	numSs(1)
 		    	document.getElementById(numbox[1]).innerHTML = showNumAttay[6];
 		        setTimeout(c, 100)
 		    },
@@ -337,11 +336,14 @@ jQuery(document).ready(function($) {
 				};
 				resAppend(theRes[chNO]);
 				chNO = chNO+1;
-				echoNumLength = echoNumLength-1;
+				echoNumLength = echoNumLength-1;	// 输出个数 -1
 				if (chNO<theRes.length) {
+					// 如果随机数还有
 					if (echoNumLength>0) {
+						// 还需要继续输出随机数的话在 0.6 秒后在执行一次输出
 						setTimeout(showNum, 600);
 					} else {
+						// 不需要继续输出则结束
 						echoEnd();
 					};
 				} else{
@@ -353,12 +355,6 @@ jQuery(document).ready(function($) {
 		], this);
 	}
 
-	// 按随机数个数输出
-	function numFun (argument) {
-		if (echoNumLength>0) {
-			showNum();
-		};
-	}
 
 
 });
