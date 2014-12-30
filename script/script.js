@@ -167,6 +167,7 @@ jQuery(document).ready(function($) {
 			showNum();
 		} else{
 			resAppend();
+			echoEnd();
 		};
 		
 	}
