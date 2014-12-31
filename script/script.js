@@ -129,13 +129,13 @@ jQuery(document).ready(function($) {
 	historyBn.click(function(event) {
 		var historyDB = jsdb.get.history();	// 获取记录的对象
 		var historyLi = '';
-		for (var i = historyDB.length - 1; i >= 0; i--) {
+		for (var i =  0; i < historyDB.length; i++) {
 			var numberDB = historyDB[i].number;
 			if (numberDB) {
 				historyLi += '<li><div>Min:'+historyDB[i].min+', Max:'+historyDB[i].max+',<div class="right">'+historyDB[i].time+'</div></div><div class="number">';
-				for (var i2 = numberDB.length - 1; i2 >= 0; i2--) {
+				for (var i2 = 0; i2 < numberDB.length; i2++) {
 					historyLi += numberDB[i2];
-					if (i2>0) {
+					if (i2<numberDB.length-1) {
 						historyLi += ', ';
 					};
 				};
