@@ -201,15 +201,23 @@ jQuery(document).ready(function($) {
 			minInput.addClass('warn');
 			mesBox('请输入数字');
 			echoEnd();
+		} else if (thisMin<1) {
+			minInput.addClass('warn');
+			mesBox('最小值必须大于 1！');
+			echoEnd();
 		} else if (isNaN(thisMax)) {
 			maxInput.addClass('warn');
 			mesBox('请输入数字');
+			echoEnd();
+		} else if (thisMax<2||thisMax<thisMin) {
+			maxInput.addClass('warn');
+			mesBox('最大值必须大于 2 并且大于最小值');
 			echoEnd();
 		} else if (isNaN(thisLength)) {
 			lengthInput.addClass('warn');
 			mesBox('请输入数字');
 			echoEnd();
-		} else if(thisLength>thisMax) {
+		} else if(thisLength>thisMax&&thisLength>0) {
 			maxInput.addClass('warn');
 			lengthInput.addClass('warn');
 			mesBox('个数必须小于最大值！');
