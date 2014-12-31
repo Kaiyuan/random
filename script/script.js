@@ -200,16 +200,20 @@ jQuery(document).ready(function($) {
 		if (isNaN(thisMin)) {
 			minInput.addClass('warn');
 			mesBox('请输入数字');
+			echoEnd();
 		} else if (isNaN(thisMax)) {
 			maxInput.addClass('warn');
 			mesBox('请输入数字');
+			echoEnd();
 		} else if (isNaN(thisLength)) {
 			lengthInput.addClass('warn');
 			mesBox('请输入数字');
+			echoEnd();
 		} else if(thisLength>thisMax) {
 			maxInput.addClass('warn');
 			lengthInput.addClass('warn');
 			mesBox('个数必须小于最大值！');
+			echoEnd();
 		} else {
 			random(thisMin,thisMax,thisLength);
 		};	
