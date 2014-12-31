@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
 	var mes = $('#Messages');
 	var mesTxt = document.getElementById('MessagesText');
 	var historyBn = $('#historyBn');
+	var historyDel = $('#DelHistory');
 	var historyBox = $('#HistoryBox');
 	var historyClose = $('#HistoryClose');
 	var infoBn = $('#infoBn');
@@ -20,6 +21,7 @@ jQuery(document).ready(function($) {
 	var chMin = chMax = chNO = echoNumLength = 0;
 	var Audio = document.getElementById('Audio');
 	var AuVol = localStorage.randomVolume;
+	var goTime;	// 点击 GO 的时间
 	// 异步函数
 	var jsqueue = function(funcs, scope) {
 	    (function next() {
@@ -27,6 +29,64 @@ jQuery(document).ready(function($) {
 	              funcs.shift().apply(scope || {}, [next].concat(Array.prototype.slice.call(arguments, 0)));
 	          }
 	    })();
+	};
+
+	// 数据操作
+	var jsdb = {};
+	jsdb.add = function (thisTable,thisKey,thisVal) {
+		var locaDB = JSON.parse(localStorage.rollDB);
+			if (typeof locaDB==='object'&&locaDB.constructor==Object) {
+				if (thisKey) {
+					locaDB[thisTable][thisKey] = thisVal;
+				} else {
+					locaDB[thisTable] = thisVal;
+				};
+				localStorage.rollDB = JSON.stringify(locaDB);
+				return(true);
+			} else {
+				iniDB();
+				if (thisKey) {
+					locaDB[thisTable][thisKey] = thisVal;
+				} else {
+					locaDB[thisTable] = thisVal;
+				};
+				localStorage.rollDB = JSON.stringify(locaDB);
+				return(true);
+			};
+	}
+	jsdb.get = function (thisTable,thisKey) {
+		var locaDB = JSON.parse(localStorage.rollDB);
+		if (locaDB[thisTable][thisKey]) {
+			return(locaDB[thisTable][thisKey]);
+		} else {
+			console.log('%s 中的 %s 没有数据',thisTable,thisKey);
+			return(false);
+		};
+
+	}
+	jsdb.add.history = function (thisVal) {
+		var locaDB = JSON.parse(localStorage.rollDB);
+		if (locaDB['history'][0]['time'] === goTime) {
+			locaDB['history'][0]['number'].push(thisVal);
+			console.log('在第一个记录添加数字 %d',thisVal);
+		} else {
+			var addArray = {'time':goTime,'max':chMax,'min':chMin,'number':[thisVal]};
+			locaDB['history'].unshift(addArray);
+			console.log('创建一个记录并添加数字 %d',thisVal);
+		};
+		localStorage.rollDB = JSON.stringify(locaDB);
+	}
+	jsdb.get.history = function () {
+		var locaDB = JSON.parse(localStorage.rollDB);
+		return(locaDB['history']);
+	}
+	// 初始化数据
+	function iniDB () {
+		console.log('初始化数据');
+		localStorage['rollDB'] = JSON.stringify({'history':[{'time':'','max':'','min':'','number':''}]});
+	}
+	if (!localStorage.rollDB) {
+		iniDB();
 	};
 
 	if (!AuVol) {
@@ -67,7 +127,38 @@ jQuery(document).ready(function($) {
 
 	// 记录按钮
 	historyBn.click(function(event) {
+		var historyDB = jsdb.get.history();	// 获取记录的对象
+		var historyLi = '';
+		for (var i = historyDB.length - 1; i >= 0; i--) {
+			var numberDB = historyDB[i].number;
+			if (numberDB) {
+				historyLi += '<li><div>Min:'+historyDB[i].min+', Max:'+historyDB[i].max+',<div class="right">'+historyDB[i].time+'</div></div><div class="number">';
+				for (var i2 = numberDB.length - 1; i2 >= 0; i2--) {
+					historyLi += numberDB[i2];
+					if (i2>0) {
+						historyLi += ', ';
+					};
+				};
+				historyLi += '</div></li>';
+			};
+		};
+		if (historyLi) {
+			$('#HistoryBox .popup-tool').show();
+			document.getElementById('HistoryList').innerHTML = historyLi;
+		} else {
+			$('#HistoryBox .popup-tool').hide();
+			document.getElementById('HistoryList').innerHTML = "<div class=\"center\"><i class=\"fa fa-inbox fz2em\"></i><br>没有记录</div>";
+		};
+		
+		// document.getElementById('HistoryList').innerHTML = typeof historyDB;
 		historyBox.fadeIn('fast');
+	});
+	historyDel.click(function(event) {
+		jsdb.add('history','',new Array({'time':'','max':'','min':'','number':''}));
+		$('#HistoryList>li').fadeOut('fast', function() {
+			$('#HistoryBox .popup-tool').fadeOut('fast');
+			document.getElementById('HistoryList').innerHTML = '';
+		});
 	});
 	historyClose.click(function(event) {
 		historyBox.fadeOut('fast');
@@ -126,6 +217,8 @@ jQuery(document).ready(function($) {
 
 	// 生成随机数
 	function random (minNO,maxNO,lengthNO) {
+		var thisDate = new Date();
+		goTime = thisDate.toLocaleString();
 		if (!minNO) {
 			var minNO = 1;
 		};
@@ -180,8 +273,9 @@ jQuery(document).ready(function($) {
 	// 显示数字
 	function resAppend (thisNO) {
 		if (thisNO!=null&&thisNO!='undefined') {
-			Resukt.append('<li class="hide"><span>'+thisNO+'</span></li>');
-			console.log('输出随机数 %d',thisNO);
+			Resukt.append('<li class="hide"><span>'+thisNO+'</span><span class="right fz12">'+goTime+'</span></li>');
+			jsdb.add.history(thisNO);
+			console.log('输出随机数 %d，并添加进记录。',thisNO);
 			$('#Result>li:last-child').slideDown('fast', function() {
 				$(this).removeClass('hide');
 			});
@@ -223,6 +317,7 @@ jQuery(document).ready(function($) {
 
 	function echoEnd (argument) {
 		console.log('输出随机数结束');
+		goTime = null;
 		$('#button').removeClass('pressed').addClass('click');
 	}
 

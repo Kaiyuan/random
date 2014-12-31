@@ -33,11 +33,20 @@ a {
 	border:none;
 }
 a:hover {color: #4396cb;}
-a, span, p>b, input, select, textarea, blockquote, .tr3 {
+a, span, p>b, input, select, textarea, button, blockquote, .tr3 {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+}
+button {
+	cursor: pointer;
+	border-width: 0;
+	border-radius: 4px;
+	background-color: #6dbff9;
+}
+button:hover {
+	background-color: #4b9eea;
 }
 input, textarea, button {
 	outline: none;
@@ -88,6 +97,9 @@ p>code {
 .right {float: right;}
 .fz12 {
 	font-size: 12px;
+}
+.fz2em {
+	font-size: 2em;
 }
 .warn {
 	box-shadow: inset 0 0 20px rgba(255, 0, 4, 0.3);
@@ -412,6 +424,22 @@ header {
 .popup .poa:hover {
 	color: #000;
 }
+.popup-tool {
+	height: 20px;
+	padding: 10px 0;
+	font-size: 14px;
+	line-height: 20px;
+}
+.popup-tool button {
+	font-size: 1.4em;
+	color: #fff;
+}
+#HistoryBox .popup-tool button {
+	background-color: #a685e1;
+}
+#HistoryBox .popup-tool button:hover {
+	background-color: #7B59B3;
+}
 #HistoryList>li {
 	float: left;
 	width: 100%;
@@ -422,6 +450,12 @@ header {
 #HistoryList>li>div {
 	width: 100%;
 	float: left;
+}
+#HistoryList>.center {
+	color: #a685e1; 
+	font-size: 3em; 
+	margin: 2em 0;
+	line-height: 1.8em;
 }
 #HistoryList>li>div:first-child {
 	font-size: 12px;
