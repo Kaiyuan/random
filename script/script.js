@@ -156,8 +156,8 @@ jQuery(document).ready(function($) {
 	historyDel.click(function(event) {
 		jsdb.add('history','',new Array({'time':'','max':'','min':'','number':''}));
 		$('#HistoryList>li').fadeOut('fast', function() {
-			$('#HistoryBox .popup-tool').fadeOut('fast');
-			document.getElementById('HistoryList').innerHTML = '';
+			$('#HistoryBox .popup-tool').slideUp('fast');
+			document.getElementById('HistoryList').innerHTML = "<div class=\"center\"><i class=\"fa fa-inbox fz2em\"></i><br>没有记录</div>";
 		});
 	});
 	historyClose.click(function(event) {
