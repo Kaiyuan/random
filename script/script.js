@@ -213,6 +213,10 @@ jQuery(document).ready(function($) {
 			maxInput.addClass('warn');
 			mesBox('最大值必须大于 2 并且大于最小值');
 			echoEnd();
+		} else if (thisMax>99999999) {
+			maxInput.addClass('warn');
+			mesBox('最大值不能超过 99999999');
+			echoEnd();
 		} else if (isNaN(thisLength)) {
 			lengthInput.addClass('warn');
 			mesBox('请输入数字');
