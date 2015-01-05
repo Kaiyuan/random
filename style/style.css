@@ -497,14 +497,6 @@ body>#Messages {
 	width: 94%;
 	padding: 2em 3%;
 }
-@media(max-width:1024px) {
-	#Menu>li:hover {
-		-webkit-transform: translate(0px, 0px);
-		-moz-transform: translate(0px, 0px);
-		-o-transform: translate(0px, 0px);
-		transform: translate(0px, 0px);
-	}
-}
 @media(max-width:640px) {
 	header {
 		background-color: #000;
@@ -518,6 +510,12 @@ body>#Messages {
 	}
 	#Menu>li:last-child::after {
 		content: none;
+	}
+	#Menu>li:hover {
+		-webkit-transform: translate(0px, 0px);
+		-moz-transform: translate(0px, 0px);
+		-o-transform: translate(0px, 0px);
+		transform: translate(0px, 0px);
 	}
 	#historyBn, #infoBn {
 		width: 26% !important;
