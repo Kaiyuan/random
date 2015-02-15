@@ -497,6 +497,15 @@ body>#Messages {
 	width: 94%;
 	padding: 2em 3%;
 }
+#cnzz {
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	line-height: 100em;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
 @media(max-width:640px) {
 	header {
 		background-color: #000;
