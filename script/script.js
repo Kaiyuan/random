@@ -221,9 +221,13 @@ jQuery(document).ready(function($) {
 			lengthInput.addClass('warn');
 			mesBox('请输入数字');
 			echoEnd();
-		} else if(thisLength>(thisMax-thisMin)&&thisLength>0) {
+		} else if(thisLength>(thisMax-thisMin) && thisLength>0) {
 			lengthInput.addClass('warn');
 			mesBox('个数必须小于最大值并且不能多出随机数范围！');
+			echoEnd();
+		} else if(thisLength<1) {
+			lengthInput.addClass('warn');
+			mesBox('个数必须大于 1！');
 			echoEnd();
 		} else {
 			random(thisMin,thisMax,thisLength);
