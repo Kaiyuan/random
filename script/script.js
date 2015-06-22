@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
 		lengthInput.val(getLength);
 	};
 	if (getMin&&getMax&&getLength&&ifGo) {
-		random(getMin,getMax,getLength);
+		AnaNO(getMin,getMax,getLength);
 	};
 
 
@@ -197,6 +197,11 @@ jQuery(document).ready(function($) {
 		var thisMin = parseInt(minInput.val());
 		var thisMax = parseInt(maxInput.val());
 		var thisLength = parseInt(lengthInput.val());
+		AnaNO(thisMin,thisMax,thisLength);
+	});
+
+	function AnaNO (thisMin,thisMax,thisLength) {
+		// body...
 		if (isNaN(thisMin)) {
 			minInput.addClass('warn');
 			mesBox('请输入数字');
@@ -230,12 +235,12 @@ jQuery(document).ready(function($) {
 			mesBox('个数必须大于 1！');
 			echoEnd();
 		} else {
-			random(thisMin,thisMax,thisLength);
-		};	
-	});
+			GRN(thisMin,thisMax,thisLength);
+		};
+	}
 
 	// 生成随机数
-	function random (minNO,maxNO,lengthNO) {
+	function GRN (minNO,maxNO,lengthNO) {
 		var thisDate = new Date();
 		goTime = thisDate.toLocaleString();
 		if (!minNO) {
