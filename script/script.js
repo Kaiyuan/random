@@ -7,15 +7,13 @@ jQuery(document).ready(function($) {
 	var lengthInput = $('#length')	//个数 input
 	var mes = $('#Messages');
 	var mesTxt = document.getElementById('MessagesText');
+	var popBn = $('.popup>.pof>.fa');
 	var historyBn = $('#historyBn');
 	var historyDel = $('#DelHistory');
 	var historyBox = $('#HistoryBox');
-	var historyClose = $('#HistoryClose');
 	var infoBn = $('#infoBn');
 	var infoBox = $('#InfoBox');
-	var infoClose = $('#InfoClose');
 	var donatBox = $('#DonateBox');
-	var donatBn = $('#donatebn');
 	var donatShow = $('#donatShow');
 	var theRes = new Array;
 	var chMin = chMax = chNO = echoNumLength = 0;
@@ -33,6 +31,8 @@ jQuery(document).ready(function($) {
 
 	// 数据操作
 	var jsdb = {};
+
+	// 往 localStorage 添加数据
 	jsdb.add = function (thisTable,thisKey,thisVal) {
 		var locaDB = JSON.parse(localStorage.rollDB);
 			if (typeof locaDB==='object'&&locaDB.constructor==Object) {
@@ -54,6 +54,8 @@ jQuery(document).ready(function($) {
 				return(true);
 			};
 	}
+
+	// 读取 localStorage 数据
 	jsdb.get = function (thisTable,thisKey) {
 		var locaDB = JSON.parse(localStorage.rollDB);
 		if (locaDB[thisTable][thisKey]) {
@@ -64,6 +66,8 @@ jQuery(document).ready(function($) {
 		};
 
 	}
+
+	// 直接在 key 为 history 添加数据
 	jsdb.add.history = function (thisVal) {
 		var locaDB = JSON.parse(localStorage.rollDB);
 		if (locaDB['history'][0]['time'] === goTime) {
@@ -92,10 +96,12 @@ jQuery(document).ready(function($) {
 	if (!AuVol) {
 		Audio.volume = 0;
 		localStorage.randomVolume = AuVol = 'off';
+		console.log('默认关闭音效');
 	};
 	if (AuVol==='up') {
 		Audio.volume = 1;
 		$('#AudioBn button').removeClass('volume-off').addClass('volume-up');
+		console.log('打开音效');
 	};
 	if (getMin) {
 		minInput.val(getMin);
@@ -115,11 +121,13 @@ jQuery(document).ready(function($) {
 		localStorage.randomVolume = AuVol = 'off';
 		Audio.volume = 0;
 		$('#AudioBn button').removeClass('volume-up').addClass('volume-off');
+		console.log('关闭音效');
 	});	
 	$(document).on('click','.volume-off',function(event) {
 		localStorage.randomVolume = AuVol  = 'up';
 		Audio.volume = 1;
 		$('#AudioBn button').removeClass('volume-off').addClass('volume-up');
+		console.log('打开音效');
 	});
 	mes.click(function(event) {
 		$(this).fadeOut('fast');
@@ -127,6 +135,11 @@ jQuery(document).ready(function($) {
 
 	// 记录按钮
 	historyBn.click(function(event) {
+		/*
+		*	纪录时存储在浏览器 localStorage 的，
+		*	通过 jsdb 对象进行读写。
+		*	
+		*/
 		var historyDB = jsdb.get.history();	// 获取记录的对象
 		var historyLi = '';
 		for (var i =  0; i < historyDB.length; i++) {
@@ -152,6 +165,7 @@ jQuery(document).ready(function($) {
 		
 		// document.getElementById('HistoryList').innerHTML = typeof historyDB;
 		historyBox.fadeIn('fast');
+		console.log('显示 HistoryBox 窗口');
 	});
 	historyDel.click(function(event) {
 		jsdb.add('history','',new Array({'time':'','max':'','min':'','number':''}));
@@ -160,24 +174,23 @@ jQuery(document).ready(function($) {
 			document.getElementById('HistoryList').innerHTML = "<div class=\"center\"><i class=\"fa fa-inbox fz2em\"></i><br>没有记录</div>";
 		});
 	});
-	historyClose.click(function(event) {
-		historyBox.fadeOut('fast');
-	});
 
 	// 说明
 	infoBn.click(function(event) {
 		infoBox.fadeIn('fast');
-	});
-	infoClose.click(function(event) {
-		infoBox.fadeOut('fast');
+		console.log('显示 InfoBox 窗口');
 	});
 
 	// 咖啡窗口
-	donatBn.click(function(event) {
-		donatBox.fadeOut('fast');
-	});
 	donatShow.click(function(event) {
 		donatBox.fadeIn('fast');
+		console.log('显示 Donate 窗口');
+	});
+
+	// 点击 X 关闭窗口
+	popBn.click(function(event) {
+		$(this).parent().parent().fadeOut('fast');
+		console.log('隐藏 %s 窗口', $(this).parent().parent().attr('id'));
 	});
 
 	// 点击输入框时候全选输入框内容
@@ -189,6 +202,7 @@ jQuery(document).ready(function($) {
 		/* 结果输出进行时 */
 		mesBox('正在生成数字');
 	});
+
 	$(document).on('click','.click',function(event) {
 		mes.fadeOut('fast');
 		/* 点击 GO 执行 */
@@ -200,6 +214,7 @@ jQuery(document).ready(function($) {
 		AnaNO(thisMin,thisMax,thisLength);
 	});
 
+	// 判断输入数字是否合适
 	function AnaNO (thisMin,thisMax,thisLength) {
 		// body...
 		if (isNaN(thisMin)) {

@@ -1,0 +1,15 @@
+{
+  "name": "Roll app to try PWA",
+  "short_name": "Roll PWA",
+  "display": "Roll",
+  "start_url": "/random/",
+  "theme_color": "#5AB0EE",
+  "background_color": "#5AB0EE",
+  "icons": [
+    {
+      "src": "/random/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

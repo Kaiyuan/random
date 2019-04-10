@@ -2,16 +2,17 @@
 <html lang="zh">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0"  /><!--禁止缩放-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"  /><!--禁止缩放-->
 	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--禁止转码-->
 	<meta name="theme-color" content="#5AB0EE">
+	<link rel="manifest" href="manifest.json" /> <!-- PWA -->
 	<title>简易 Roll 工具</title>
 	<link rel="icon" href="images/favicon.png">
 	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="fonts/fontawesome.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="fonts/digifaw.css" media="screen, print">
 	<link rel="stylesheet" type="text/css" href="style/style.css" media="screen, print">
-	<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="script/jquery-3.3.1.min.js"></script>
 	<script>
 		String.prototype.getQuery = function(name) {  
 		　　var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");  
@@ -33,12 +34,12 @@
 		<ul id="Menu" class="list centerbox por">
 			<!-- <li id="logo"><i class="fa fa-paper-plane" title="不重复随机数生成器"></i></li> -->
 			<!-- <li><span id="test" class="cup">TEST</span></li> -->
-			<li id="historyBn"><span class="cup"><i class="fa fa-history"></i> 记录</span></li>
-			<li id="infoBn" ><span class="cup"><i class="fa fa-info-circle"></i> 说明</span></li>
-			<li id="AudioBn"><button class="cup w100 volume-off" title="声音开关"><i class="fa"></i></button></li>
-			<li id="donatShow"><span class="cup" title="请作者喝咖啡"><i class="fa fa-coffee"></i></span></li>
-			<li id="QRBn" class="por cup"><span><i class="fa fa-qrcode"></i></span><img src="images/ecgame.svg" alt="" width="280" height="280" class="poa tr3"></li>
-			<li id="Issue"><a href="https://github.com/Kaiyuan/random/issues" target="_blank" title="问题反馈"><i class="fa fa-life-ring"></i></a></li>
+			<li id="historyBn"><span class="cup"><i class="fa fas fa-history"></i> 记录</span></li>
+			<li id="infoBn" ><span class="cup"><i class="fa fas fa-info-circle"></i> 说明</span></li>
+			<li id="AudioBn"><button class="cup w100 volume-off" title="声音开关"><i class="fa fas"></i></button></li>
+			<li id="donatShow"><span class="cup" title="请作者喝咖啡"><i class="fa fas fa-coffee"></i></span></li>
+			<li id="QRBn" class="por cup"><span><i class="fa fa-qrcode"></i></span><img src="images/github.png" alt="" width="280" height="280" class="poa tr3"></li>
+			<li id="Issue"><a href="https://github.com/Kaiyuan/random/issues" target="_blank" title="问题反馈"><i class="fa fas fa-life-ring"></i></a></li>
 		</ul>
 	</header>
 	<article id="Main" class="left w100 center">
@@ -76,11 +77,11 @@
 			<div class="centerbox">
 				<h3><i class="fa fa-history"></i> 记录</h3>
 			</div>
-			<i id="HistoryClose" class="cup fa fa-remove poa tr3"></i>
+			<i id="HistoryClose" class="cup fa fas fa-times poa tr3"></i>
 		</div>
 		<div class="centerbox">
 		<div class="popup-tool">
-			<button id="DelHistory" class="right"><i class="fa fa-trash"></i></button>
+			<button id="DelHistory" class="right"><i class="fa fas fa-trash"></i></button>
 		</div>
 			<ul id="HistoryList" class="list"></ul>
 		</div>
@@ -91,7 +92,7 @@
 			<div class="centerbox">
 				<h3><i class="fa fa-info-circle"></i> 说明</h3>
 			</div>
-			<i id="InfoClose" class="cup fa fa-remove poa tr3"></i>
+			<i id="InfoClose" class="cup fa fas fa-times poa tr3"></i>
 		</div>
 		<div class="centerbox">
 			<p>
@@ -107,7 +108,7 @@
 			<p>
 				可以直接使用 GET 方式输入数据。
 				</p>
-			<pre><code>http:&#47;&#47;roll.ecga.me&#47;<span style="color: #de2867;">?</span>min=1<span style="color: #7262c7;">&amp;</span>max=10<span style="color: #7262c7;">&amp;</span>length=2<span style="color: #7262c7;">&amp;</span>go=true</code></pre>
+			<pre><code>http:&#47;&#47;kaiyuan.github.io&#47;random&#47;<span style="color: #de2867;">?</span>min=1<span style="color: #7262c7;">&amp;</span>max=10<span style="color: #7262c7;">&amp;</span>length=2<span style="color: #7262c7;">&amp;</span>go=true</code></pre>
 			<p>
 				<code>min=1</code> 是最小值<br>
 				<code>max=10</code> 是最大值<br>
@@ -131,18 +132,17 @@
 				LICENSE: <a href="https://github.com/Kaiyuan/random/blob/gh-pages/LICENSE" target="_blank">MIT</a>
 			</p>
 		</div>
-		<div id="cnzz"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254414475'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/stat.php%3Fid%3D1254414475' type='text/javascript'%3E%3C/script%3E"));</script></div>
 	</div>
 	<!-- 咖啡窗口 -->
 	<div id="DonateBox" class="pof dpn popup">
 		<div class="w100 center pof">
 			<div class="centerbox">
-				<h3><i class="fa fa-coffee"></i> 即溶咖啡</h3>
+				<h3><i class="fa fas fa-coffee"></i> 即溶咖啡</h3>
 			</div>
-			<i id="donatebn" class="cup fa fa-remove poa tr3"></i>
+			<i id="donatebn" class="cup fa fas fa-times poa tr3"></i>
 		</div>
 		<div class="centerbox">
-		<iframe src="//kaiyuan.github.io/donate/?item=Github_random&show=true" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:280px; width:100%; "  frameborder="0" scrolling="no"></iframe>
+		<iframe src="https://kaiyuan.github.io/donate-page/drinks/?item=Github_random&show=true" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:280px; width:100%; "  frameborder="0" scrolling="no"></iframe>
 		</div>
 	</div>
 	<!-- 音效 -->
