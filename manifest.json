@@ -1,0 +1,17 @@
+{
+	"name" : "Roll app to try PWA",
+    "short_name" : "Roll PWA",
+    "display" : "fullscreen",
+    "start_url" : "https://kaiyuan.github.io/random/",
+    "theme_color" : "#5AB0EE",
+    "background_color" : "#5AB0EE",
+    "lang" : "",
+    "orientation" : "any",
+    "generated" : "undefined",
+    "icons" : [
+        {
+            "src": "https://kaiyuan.github.io/random/random/apple-touch-icon.png",
+            "sizes": "512x512"
+        }
+    ]
+}

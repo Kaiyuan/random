@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"  /><!--禁止缩放-->
+	<meta http-equiv="Cache-Control" content="no-siteapp" /><!--禁止转码-->
+	<meta name="theme-color" content="#5AB0EE">
+	<link rel="manifest" href="manifest.json" /> <!-- PWA -->
+	<title>简易 Roll 工具</title>
+	<link rel="icon" href="images/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
+	<link href="fonts/fontawesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="fonts/digifaw.css" media="screen, print">
+	<link rel="stylesheet" type="text/css" href="style/style.css" media="screen, print">
+	<script type="text/javascript" src="script/jquery-3.3.1.min.js"></script>
+	<script>
+		String.prototype.getQuery = function(name) {  
+		　　var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");  
+		　　var r = this.substr(this.indexOf("\?")+1).match(reg);  
+		　　if (r!=null) return unescape(r[2]); return null;  
+		}  
+		var strHref =	location.href.substring(location.href.indexOf("?")+1);
+		var getMin	=	parseInt(strHref.getQuery('min'));
+		var getMax	=	parseInt(strHref.getQuery('max'));
+		var getLength	=	parseInt(strHref.getQuery('length'));
+		var ifGo	=	strHref.getQuery('go');
+		// PWA
+		if ("serviceWorker" in navigator) {
+		  if (navigator.serviceWorker.controller) {
+		    console.log("[PWA Builder] active service worker found, no need to register");
+		  } else {
+		    // Register the service worker
+		    navigator.serviceWorker
+		      .register("pwabuilder-sw.js", {
+		        scope: "./"
+		      })
+		      .then(function (reg) {
+		        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+		      });
+		  }
+		}
+	</script>
+	<script type="text/javascript" src="script/script.js"></script>
+</head>
+<body>
+	<!--[if lte IE 9]><script src="script/killie.js"></script><![endif]-->
+	<header class="w100 left">
+		<!-- 菜单 -->
+		<ul id="Menu" class="list centerbox por">
+			<!-- <li id="logo"><i class="fa fa-paper-plane" title="不重复随机数生成器"></i></li> -->
+			<!-- <li><span id="test" class="cup">TEST</span></li> -->
+			<li id="historyBn"><span class="cup"><i class="fa fas fa-history"></i> 记录</span></li>
+			<li id="infoBn" ><span class="cup"><i class="fa fas fa-info-circle"></i> 说明</span></li>
+			<li id="AudioBn"><button class="cup w100 volume-off" title="声音开关"><i class="fa fas"></i></button></li>
+			<li id="donatShow"><span class="cup" title="请作者喝咖啡"><i class="fa fas fa-coffee"></i></span></li>
+			<li id="QRBn" class="por cup"><span><i class="fa fa-qrcode"></i></span><img src="images/github.png" alt="" width="280" height="280" class="poa tr3"></li>
+			<li id="Issue"><a href="https://github.com/Kaiyuan/random/issues" target="_blank" title="问题反馈"><i class="fa fas fa-life-ring"></i></a></li>
+		</ul>
+	</header>
+	<article id="Main" class="left w100 center">
+		<div class="centerbox">
+			<!-- 输入框 -->
+			<ul id="form" class="list w100 center">
+				<li><label for="min">最小值</label><input id="min" type="number" name="min" value="1" min="1" maxlength="99999998" pattern="[0-9]{8}"></li>
+				<li><label for="max">最大值</label><input id="max" type="number" name="max" value="10" min="2" maxlength="99999999" pattern="[0-9]{8}"></li>
+				<li><label for="length">个数</label><input id="length" type="number" name="length" value="1" min="1" maxlength="100" pattern="[0-9]{3}"></li>
+			</ul>
+			<!-- 按钮 -->
+			<button id="button" class="click w100 cup">GO</button>
+			<!-- 数字滚动显示 -->
+			<ol id="Number" class="list w100 number">
+				<li id="NO8">0</li>
+				<li id="NO7">0</li>
+				<li id="NO6">0</li>
+				<li id="NO5">0</li>
+				<li id="NO4">0</li>
+				<li id="NO3">0</li>
+				<li id="NO2">0</li>
+				<li id="NO1">0</li>
+			</ol>
+			<!-- 结果列表 -->
+			<ol id="Result" class="number"><div id="resClear"></div></ol>
+		</div>
+	</article>
+	<!-- 提示信息 -->
+	<div id="Messages" class="w100 cup pof dpn">
+		<div id="MessagesText"></div>
+	</div>
+	<!-- 记录 -->
+	<div id="HistoryBox" class="w100 pof dpn popup">
+		<div class="w100 center pof">
+			<div class="centerbox">
+				<h3><i class="fa fa-history"></i> 记录</h3>
+			</div>
+			<i id="HistoryClose" class="cup fa fas fa-times poa tr3"></i>
+		</div>
+		<div class="centerbox">
+		<div class="popup-tool">
+			<button id="DelHistory" class="right"><i class="fa fas fa-trash"></i></button>
+		</div>
+			<ul id="HistoryList" class="list"></ul>
+		</div>
+	</div>
+	<!-- 说明 -->
+	<div id="InfoBox" class="w100 pof dpn popup">
+		<div class="w100 center pof">
+			<div class="centerbox">
+				<h3><i class="fa fa-info-circle"></i> 说明</h3>
+			</div>
+			<i id="InfoClose" class="cup fa fas fa-times poa tr3"></i>
+		</div>
+		<div class="centerbox">
+			<p>
+				在对应输入框中填写相应数字后点击<span style="color:#fff;margin: 0 0.3em;background-color: #5AB0EE; box-shadow: 0 0 0 3px #5AB0EE; border-radius: 1px; padding: 0 0.2em;">GO</span>按钮即可生成不重复随机数。<br>
+				最小值和个数必须小于最大值！
+			</p>
+			<p>
+				点击了第一次<span style="color:#fff;margin: 0 0.3em;background-color: #5AB0EE; box-shadow: 0 0 0 3px #5AB0EE; border-radius: 1px; padding: 0 0.2em;">GO</span>之后，只要不修改最小值和最大值，这次生成的随机数顺序不会改变，所以多次点击<span style="color:#fff;margin: 0 0.3em;background-color: #5AB0EE; box-shadow: 0 0 0 3px #5AB0EE; border-radius: 1px; padding: 0 0.2em;">GO</span>都不会出现重复的数字，直到生成所有数字。数字会被随机50次保证是真的随机。
+			</p>
+			<p>
+				每次点击点击按钮生成随机数都会添加到记录中，可通过顶部「<span style="color:#fff;margin: 0 0.3em;background-color: #A685E1; box-shadow: 0 0 0 3px #A685E1; border-radius: 1px; padding: 0 0.2em;"><i class="fa fa-history"></i> 记录</span>」查看。这段记录是保存在你的浏览器中的，只要浏览器数据没有清理就不会丢失。
+			</p>
+			<p>
+				可以直接使用 GET 方式输入数据。
+				</p>
+			<pre><code>http:&#47;&#47;kaiyuan.github.io&#47;random&#47;<span style="color: #de2867;">?</span>min=1<span style="color: #7262c7;">&amp;</span>max=10<span style="color: #7262c7;">&amp;</span>length=2<span style="color: #7262c7;">&amp;</span>go=true</code></pre>
+			<p>
+				<code>min=1</code> 是最小值<br>
+				<code>max=10</code> 是最大值<br>
+				<code>length=2</code> 是生成随机数的个数<br>
+				<code>go=true</code> 是设置是否立即生成随机数
+			</p>
+			<p>
+				随机数生成原理：<a href="http://www.ifrans.cn/javascript-array-random-sort/" target="_blank">http://www.ifrans.cn/javascript-array-random-sort/</a><br>
+				JavaScript 排队（异步）：<a href="http://segmentfault.com/q/1010000002435672/" target="_blank">http://segmentfault.com/q/1010000002435672</a><br>
+				Github：<a href="https://github.com/Kaiyuan/random/" target="_blank">https://github.com/Kaiyuan/random/</a><br>
+				整个工具思路和代码解释（未完成）：<a href="https://github.com/Kaiyuan/random/wiki" target="_blank">https://github.com/Kaiyuan/random/wiki</a>
+			</p>
+			<h4 style="margin: 1em 0 0 0;">使用到的项目</h4>
+			<ul>
+				<li><a href="https://jquery.com" target="_blank">jQuery</a></li>
+				<li>图标：<a href="http://fontawesome.io/" target="_blank">Font Awesome</a></li>
+				<li>二维码生成：<a href="http://cli.im/" target="_blank">草料</a></li>
+				<li>计算器字体：<a href="https://github.com/Kaiyuan/random/tree/gh-pages/fonts" target="_blank">digifaw</a></li>
+			</ul>
+			<p>
+				LICENSE: <a href="https://github.com/Kaiyuan/random/blob/gh-pages/LICENSE" target="_blank">MIT</a>
+			</p>
+		</div>
+	</div>
+	<!-- 咖啡窗口 -->
+	<div id="DonateBox" class="pof dpn popup">
+		<div class="w100 center pof">
+			<div class="centerbox">
+				<h3><i class="fa fas fa-coffee"></i> 即溶咖啡</h3>
+			</div>
+			<i id="donatebn" class="cup fa fas fa-times poa tr3"></i>
+		</div>
+		<div class="centerbox">
+		<iframe src="https://kaiyuan.github.io/donate-page/drinks/?item=Github_random&show=true" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:280px; width:100%; "  frameborder="0" scrolling="no"></iframe>
+		</div>
+	</div>
+	<!-- 音效 -->
+	<audio id="Audio" src="sound/sound.mp3" type="audio/mpeg"></audio>
+</body>
+</html>
